@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="fa">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ماشین حساب جلال‌مهر</title>
+
+
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #f2f4f7;
+      --card: #ffffff;
+      --text: #222;
+      --muted: #6b7280;
+      --accent: #0b74ff;
+      --input-bg: #fbfcfd;
+      --border: #e6e9ee;
+      --pos: #1faa55;
+      --neg: #d63a3a;
+    }
+    body.dark{
+      --bg: #111214;
+      --card: #18191b;
+      --text: #e6e6e6;
+      --muted: #9aa0a6;
+      --accent: #4da3ff;
+      --input-bg: #232425;
+      --border: #2b2d30;
+    }
+
+    html,body{height:100%}
+    body{
+      font-family: "Vazirmatn", Tahoma, Arial, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      direction:rtl;
+      margin:0;
+      padding:28px;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    .container{
+      max-width:1100px;
+      margin: 0 auto;
+      padding: 14px;
+    }
+
+    .card{
+      background:var(--card);
+      border-radius:14px;
+      padding:20px;
+      box-shadow: 0 8px 30px rgba(16,24,40,0.06);
+      border: 1px solid var(--border);
+      overflow:visible;
+    }
+
+    header.row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      margin-bottom:12px;
+      flex-wrap:wrap;
+    }
+
+    header.row h2{margin:0;font-size:1.25rem}
+
+    .controls {
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+
+    .groups {
+      display:grid;
+      gap:18px;
+    }
+
+    fieldset.group{
+      border:1px solid var(--border);
+      padding:12px;
+      border-radius:10px;
+      background:transparent;
+    }
+    fieldset.group legend{
+      padding:0 8px;
+      font-weight:700;
+      color:var(--muted);
+    }
+
+    .grid{
+      display:grid;
+      gap:14px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    label{ display:block; margin-bottom:6px; font-weight:600 }
+    input[type="number"]{
+      width:100%;
+      box-sizing:border-box;
+      padding:10px 12px;
+      border-radius:8px;
+      border:1px solid var(--border);
+      background:var(--input-bg);
+      color:var(--text);
+      font-size:14px;
+    }
+    input[type="number"]:focus{
+      outline:none;
+      box-shadow:0 4px 14px rgba(11,116,255,0.12);
+      border-color:var(--accent);
+      background:#fff;
+    }
+
+    .btn-row{
+      display:flex;
+      gap:10px;
+      margin-top:12px;
+      flex-wrap:wrap;
+    }
+    button {
+      cursor:pointer;
+      border:none;
+      border-radius:10px;
+      padding:10px 14px;
+      font-weight:600;
+      font-family:inherit;
+    }
+    #calc{ background:var(--accent); color:#fff }
+    #calc:hover{ filter:brightness(.95) }
+    #reset{ background:#efefef; color:#111; border:1px solid #e0e0e0 }
+    #themeToggle{ background:#222; color:#fff; padding:8px 10px; border-radius:8px }
+
+    .result{
+      margin-top:22px;
+      padding:14px;
+      background:var(--input-bg);
+      border:1px solid var(--border);
+      border-radius:10px;
+      line-height:1.8;
+      color:var(--text);
+      font-size:15px;
+    }
+
+    .final-box{
+      margin-top:18px;
+      padding:14px;
+      border-radius:10px;
+      font-weight:700;
+      font-size:1.05rem;
+      border:2px solid;
+    }
+
+    @media (max-width:520px){
+      body{ padding:16px }
+      .card{ padding:16px }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+
+      <h2>ماشین حساب جلال‌مهر</h2>
+
+      <header class="row">
+        
+        <h2>ماشین حساب درآمد پروار دام</h2>
+        <div class="controls">
+          <button id="themeToggle" type="button">تغییر تم</button>
+        </div>
+      </header>
+
+      <div class="groups">
+
+        <!-- گروه‌های قبلی بدون تغییر -->
+        <!-- مشخصات رشد -->
+        <fieldset class="group">
+          <legend>مشخصات رشد</legend>
+          <div class="grid">
+            <div><label>وزن خرید (kg)</label><input id="wStart" type="number" value="30"></div>
+            <div><label>وزن فروش (kg)</label><input id="wEnd" type="number" value="55"></div>
+            <div><label>مدت رشد (ماه)</label><input id="months" type="number" value="3"></div>
+            <div><label>تعداد دام</label><input id="count" type="number" value="1"></div>
+            <div><label>قیمت گوشت (تومان/kg)</label><input id="meatPrice" type="number" value="350000"></div>
+          </div>
+        </fieldset>
+
+        <!-- خوراک -->
+        <fieldset class="group">
+          <legend>خوراک و قیمت خوراک</legend>
+          <div class="grid">
+            <div><label>کاه روزانه (kg)</label><input id="strawPerDay" type="number" value="1.6"></div>
+            <div><label>جو روزانه (kg)</label><input id="barleyPerDay" type="number" value="0.4"></div>
+            <div><label>قیمت کاه (تومان/kg)</label><input id="strawPrice" type="number" value="11000"></div>
+            <div><label>قیمت جو (تومان/kg)</label><input id="barleyPrice" type="number" value="28000"></div>
+          </div>
+        </fieldset>
+
+        <!-- انرژی -->
+        <fieldset class="group">
+          <legend>هزینه‌های انرژی (ماهانه)</legend>
+          <div class="grid">
+            <div><label>آب ماهانه</label><input id="waterMonthly" type="number" value="0"></div>
+            <div><label>برق ماهانه</label><input id="electricityMonthly" type="number" value="0"></div>
+            <div><label>گاز ماهانه</label><input id="gasMonthly" type="number" value="0"></div>
+          </div>
+        </fieldset>
+
+        <!-- مکان و کارگر -->
+        <fieldset class="group">
+          <legend>مکان و نیروی کار</legend>
+          <div class="grid">
+            <div><label>اجاره ماهانه</label><input id="rentMonthly" type="number" value="0"></div>
+            <div><label>تعداد کارگر</label><input id="workerCount" type="number" value="0"></div>
+            <div><label>حقوق هر کارگر</label><input id="workerMonthlySalary" type="number" value="0"></div>
+          </div>
+        </fieldset>
+
+        <!-- جانبی -->
+        <fieldset class="group">
+          <legend>سایر هزینه‌ها</legend>
+          <div class="grid">
+            <div><label>هزینه جانبی ماهانه هر دام</label><input id="monthlyOther" type="number" value="0"></div>
+          </div>
+        </fieldset>
+
+      </div>
+
+      <div class="btn-row">
+        <button id="calc">محاسبه کن</button>
+        <button id="reset">بازنشانی</button>
+      </div>
+
+      <div id="result" class="result"></div>
+
+    </div>
+  </div>
+
+  <script>
+    const fmt = n => {
+      n = Number(n || 0);
+      if (n < 0) return `- ${Math.abs(n).toLocaleString('en-US')}`;
+      return n.toLocaleString('en-US');
+    };
+  
+    const DEFAULTS = {
+      wStart:30, wEnd:55, months:3, count:1, meatPrice:350000,
+      strawPerDay:1.6, barleyPerDay:0.4, strawPrice:11000, barleyPrice:28000,
+      waterMonthly:0, electricityMonthly:0, gasMonthly:0,
+      rentMonthly:0, workerCount:0, workerMonthlySalary:0,
+      monthlyOther:0
+    };
+  
+    const $ = id => document.getElementById(id);
+  
+    function read(){
+      const o = {};
+      for (const k in DEFAULTS) o[k] = parseFloat($(k).value || 0);
+      o.count = parseInt($("count").value || 1);
+      o.workerCount = parseInt($("workerCount").value || 0);
+      return o;
+    }
+  
+    function calculate(){
+      const v = read();
+  
+      const days = v.months * 30;
+  
+      const grossPerLamb = v.wEnd * v.meatPrice;
+      const purchaseCost = v.wStart * v.meatPrice;
+  
+      const feedCost =
+        (v.strawPerDay * days * v.strawPrice) +
+        (v.barleyPerDay * days * v.barleyPrice);
+  
+      const otherCost = v.monthlyOther * v.months;
+  
+      const fixedCost =
+        (v.waterMonthly + v.electricityMonthly + v.gasMonthly) * v.months +
+        (v.rentMonthly * v.months) +
+        (v.workerCount * v.workerMonthlySalary * v.months);
+  
+      const fixedCostMonthly =
+        (v.waterMonthly + v.electricityMonthly + v.gasMonthly) +
+        v.rentMonthly +
+        (v.workerCount * v.workerMonthlySalary);
+  
+      const varCostPerLamb = purchaseCost + feedCost + otherCost;
+  
+      const netPerLamb_total =
+        grossPerLamb - varCostPerLamb - (fixedCost / Math.max(1, v.count));
+  
+      const netPerLamb_month = netPerLamb_total / v.months;
+  
+      const netAll_total = netPerLamb_total * v.count;
+      const netAll_month = netAll_total / v.months;
+  
+      const color1 = netPerLamb_total >= 0 ? 'var(--pos)' : 'var(--neg)';
+      const color2 = fixedCost >= 0 ? 'var(--pos)' : 'var(--neg)';
+      const color3 = netAll_total >= 0 ? 'var(--pos)' : 'var(--neg)';
+  
+      $("result").innerHTML = `
+        <!-- بخش ۱: یک دام -->
+        <div style="font-weight:700; margin-bottom:6px">برای یک دام</div>
+        <div>سود ماهانه: <strong>${fmt(netPerLamb_month)}</strong> تومان</div>
+        <div class="final-box" style="border-color:${color1}">
+          سود کل دوره برای یک دام: ${fmt(netPerLamb_total)} تومان
+        </div>
+  
+        <hr style="margin:18px 0; border:none; border-bottom:1px solid var(--border)">
+  
+        <!-- بخش ۲: هزینه‌های ثابت -->
+        <div style="font-weight:700; margin-bottom:6px">هزینه‌های ثابت کل مجموعه</div>
+        <div>هزینه ثابت ماهانه: <strong>${fmt(fixedCostMonthly)}</strong> تومان</div>
+        <div class="final-box" style="border-color:${color2}">
+          هزینه ثابت کل دوره: ${fmt(fixedCost)} تومان
+        </div>
+  
+        <hr style="margin:18px 0; border:none; border-bottom:1px solid var(--border)">
+  
+        <!-- بخش ۳: X دام -->
+        <div style="font-weight:700; margin-bottom:6px">برای ${v.count} دام</div>
+        <div>سود ماهانه کل: <strong>${fmt(netAll_month)}</strong> تومان</div>
+        <div class="final-box" style="border-color:${color3}">
+          سود کل دوره برای ${v.count} دام: ${fmt(netAll_total)} تومان
+        </div>
+      `;
+    }
+  
+    $("calc").onclick = calculate;
+  
+    $("reset").onclick = () => {
+      for (const k in DEFAULTS) $(k).value = DEFAULTS[k];
+      $("result").innerHTML = "";
+    };
+  
+    $("themeToggle").onclick = () => document.body.classList.toggle("dark");
+  
+    window.onload = () => setTimeout(calculate, 70);
+  </script>
+  
+
+</body>
+</html>
